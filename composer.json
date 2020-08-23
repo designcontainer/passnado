@@ -1,0 +1,19 @@
+{
+	"name": "designcontaineroslo/passnado",
+	"description": "Password protect site",
+	"keywords": ["password", "protect", "wordpress"],
+	"homepage": "https://designcontainer.no",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Design Container",
+			"email": "tech@designcontainer.no",
+			"homepage": "https://designcontainer.no"
+		}
+	],
+	"type": "wordpress-plugin",
+	"require": {
+		"php": ">=5.3.2",
+		"composer/installers": "v1.0.6"
+	}
+}
