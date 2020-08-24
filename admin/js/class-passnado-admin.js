@@ -1,5 +1,6 @@
-jQuery(document).ready(function(jQuery) {
+jQuery(document).ready(function() {
 	generateKeyTrigger();
+	copyPreviewURL();
 });
 
 function generateKey(length) {
@@ -16,6 +17,24 @@ function generateKeyTrigger() {
 	jQuery('.passnado-generate-key').on('click', function() {
 		 jQuery(this).prev().val(generateKey(20));
 	})
+}
+
+function copyPreviewURL() {
+	jQuery('.passnado-copy-key-url').on('click', function() {
+		var siteURL = jQuery(this).attr('data-site-url');
+		var key = jQuery('#passnado_key').val();
+		var previewURL = siteURL + '?key=' + key;
+		copyToClipboard(previewURL);
+	});
+}
+
+function copyToClipboard(text) {
+    var dummy = document.createElement("textarea");
+    document.body.appendChild(dummy);
+    dummy.value = text;
+    dummy.select();
+    document.execCommand("copy");
+    document.body.removeChild(dummy);
 }
 
 //https://wordpress.stackexchange.com/questions/228085/how-to-upload-an-image-in-the-plugins-options-page

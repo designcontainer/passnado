@@ -2,13 +2,13 @@
 
 /**
  * @link     https://designcontainer.no
- * @since    1.0.2
+ * @since    1.0.3
  * @package  Password protect site
  *
  * Plugin Name: Passnado
  * Plugin URI:  https://designcontainer.no
  * Description: Password protect site
- * Version:     1.0.2
+ * Version:     1.0.3
  * Author:      Design Container AS
  * Author URI:  https://designcontainer.no
  * License:     GNU General Public License version 3.0

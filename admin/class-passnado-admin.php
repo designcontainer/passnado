@@ -64,11 +64,13 @@ function passnado_options_page() { ?>
 							<fieldset>
 								<legend class="screen-reader-text"><span>Key parameter code</span></legend> 
 								<input class="regular-text code" id="passnado_key" value="<?php echo get_option('passnado_key'); ?>" min="0" name="passnado_key" type="text">
-								<button type="button" class="button passnado-generate-key wp-hide-pw hide-if-no-js" data-toggle="0" aria-label="Generate key">
+								<button type="button" class="button button-primary passnado-generate-key wp-hide-pw hide-if-no-js" data-toggle="0" aria-label="Generate key">
 									<span class="dashicons dashicons-admin-network" aria-hidden="true"></span>
 									<span class="text">Generate key</span>
 								</button>
-								<br>
+								<button type="button" class="button passnado-copy-key-url wp-hide-pw hide-if-no-js" data-toggle="0" aria-label="Copy preview URL" data-site-url="<?php echo home_url(); ?>">
+									<span class="text">Copy link</span>
+								</button>
 							</fieldset>
 						</td>
 					</tr>
