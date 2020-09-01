@@ -7,8 +7,13 @@ function passnado_set_cookie() {
 function passnado_protection() {
 	if(get_option( 'passnado_protect' )) {
 		if( ! is_user_logged_in() ) {
-			passnado_message();
-			die();       
+			if ( get_option('passnado_redirect') !== 'false' ) {
+				$redirectID = get_option('passnado_redirect');
+				redirectToPage($redirectID);
+			} else {
+				passnado_message();
+				die();
+			}
 		}
 	}
 }
@@ -18,8 +23,13 @@ function passnado_protection_with_key() {
 		if($_COOKIE['passnado_key'] !== get_option('passnado_key')) {
 			if( ! is_user_logged_in() ) {
 				if($_GET['key'] !== get_option('passnado_key')) {
-					passnado_message();
-					die();       
+					if ( get_option('passnado_redirect') !== 'false' ) {
+						$redirectID = get_option('passnado_redirect');
+						redirectToPage($redirectID);
+					} else {
+						passnado_message();
+						die();       
+					}
 				} else {
 					passnado_set_cookie();
 					maybe_set_user_cookie();
@@ -55,6 +65,16 @@ function passnado_update_login_logo($logoId) {
 	    </style>
 	<?php }
 	add_action( 'login_enqueue_scripts', 'passnado_login_logo' );
+}
+
+function redirectToPage($redirectID) {
+	$currentURL = get_the_permalink();
+	$url = get_the_permalink($redirectID);
+	if ( $currentURL != $url ) {
+		header("HTTP/1.1 301 Moved Permanently");
+		header('Location: '.$url);
+		exit;
+	}
 }
 
 if ( $GLOBALS['pagenow'] === 'wp-login.php' && ($logoId = get_option('passnado_logo'))) {

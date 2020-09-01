@@ -29,6 +29,7 @@ function passnado_register_settings() {
 	register_setting( 'passnado_options_group', 'passnado_logo' );
 	register_setting( 'passnado_options_group', 'passnado_message_title' );
 	register_setting( 'passnado_options_group', 'passnado_message_text' );
+	register_setting( 'passnado_options_group', 'passnado_redirect' );
 	register_setting( 'passnado_options_group', 'passnado_login_link_show' );
 	register_setting( 'passnado_options_group', 'passnado_login_link_text' );
 }
@@ -76,6 +77,7 @@ function passnado_options_page() { ?>
 					</tr>
 				</tbody>
 			</table>
+
 			<h2 class="title">Edit message</h2>
 			<p>Edit these fields to replace the default login message.</p>
 			<table class="form-table" role="presentation">
@@ -98,6 +100,26 @@ function passnado_options_page() { ?>
 								<input placeholder="Please login to view this website" class="regular-text code" id="passnado_message_text" value="<?php echo get_option('passnado_message_text'); ?>" min="0" name="passnado_message_text" type="text">
 								<br>
 							</fieldset>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h2 class="title">Redirect to a page</h2>
+			<p>Get a custom greeting screen by redirecting to a page</p>
+			<table class="form-table" role="presentation">
+				<tbody>
+					<tr valign="top"><th scope="row">Choose a page</th>
+						<td>
+							<select name="passnado_redirect">
+								<?php $pageID = get_option('passnado_redirect'); ?>
+								<option value="false" <?php echo selected( $page->ID, $pageID, false ); ?>>Don't redirect</option>
+								<?php if( $pages = get_pages() ){
+									foreach( $pages as $page ){
+										echo '<option value="' . $page->ID . '" ' . selected( $page->ID, $pageID, false ) . '>' . $page->post_title . '</option>';
+									}
+								} ?>
+							</select>
 						</td>
 					</tr>
 				</tbody>
