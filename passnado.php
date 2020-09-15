@@ -2,7 +2,7 @@
 
 /**
  * @link     https://designcontainer.no
- * @since    1.1.0
+ * @since    1.2.0
  * @package  Password protect site
  *
  * Plugin Name: Passnado
@@ -17,6 +17,7 @@
  */
 
 if (is_admin()) require_once plugin_dir_path( __FILE__ ) . 'admin/class-passnado-admin.php';
+if (is_admin()) require_once plugin_dir_path( __FILE__ ) . 'admin/class-passnado-widget.php';
 require_once plugin_dir_path( __FILE__ ) . 'public/class-passnado-public.php';
 require_once plugin_dir_path( __FILE__ ) . 'public/class-passnado-message.php';
 require_once plugin_dir_path( __FILE__ ) . 'public/class-passnado-fake-cookie.php';

@@ -28,6 +28,13 @@ function copyPreviewURL() {
 	});
 }
 
+function copyPreviewURLinWidget() {
+	jQuery('.passnado-copy-key-url-widget').on('click', function() {
+		var previewURL = jQuery(this).attr('data-site-url');
+		copyToClipboard(previewURL);
+	});
+}
+
 function copyToClipboard(text) {
     var dummy = document.createElement("textarea");
     document.body.appendChild(dummy);
