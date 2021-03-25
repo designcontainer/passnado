@@ -1,0 +1,7 @@
+# Idea
+.DS_Store
+.idea
+
+# Composer
+vendor/*
+!vendor/.gitkeep
