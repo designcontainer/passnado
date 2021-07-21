@@ -1,7 +1,11 @@
 {
 	"name": "designcontainer/passnado",
 	"description": "Password protect site",
-	"keywords": ["password", "protect", "wordpress"],
+	"keywords": [
+		"password",
+		"protect",
+		"wordpress"
+	],
 	"homepage": "https://designcontainer.no",
 	"license": "MIT",
 	"authors": [
