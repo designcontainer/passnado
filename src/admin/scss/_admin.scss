@@ -22,6 +22,14 @@
 		&:nth-child(3) {
 			grid-area: magic-link;
 		}
+
+		&--disabled {
+			cursor: not-allowed;
+			opacity: 0.5;
+			* {
+				pointer-events: none;
+			}
+		}
 	}
 }
 

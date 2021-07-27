@@ -15,6 +15,11 @@
       grid-area: toggle; }
     .passnado-settings__part:nth-child(3) {
       grid-area: magic-link; }
+    .passnado-settings__part--disabled {
+      cursor: not-allowed;
+      opacity: 0.5; }
+      .passnado-settings__part--disabled * {
+        pointer-events: none; }
 
 .settings_page_passnado #wpcontent {
   padding-left: 0; }
@@ -50,6 +55,14 @@ ul.passnado-checklist li {
 
 .passnado-part-header h2 {
   margin: 0.5rem 0 1.125rem 0; }
+
+.passnado-button-group {
+  display: flex;
+  align-items: center;
+  column-gap: 1rem; }
+
+.components-button.has-icon {
+  padding-right: 0.75rem; }
 
 .passnado-form {
   display: flex;

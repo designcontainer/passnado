@@ -18,7 +18,7 @@ const PassnadoSettings = () => {
 			<div className="passnado-settings">
 				<Checklist done={setCanDisable} />
 				<PassnadoToggle passnado={setPassnado} canDisable={canDisable} />
-				<MagicLink />
+				<MagicLink passnado={passnado} />
 			</div>
 		</>
 	);

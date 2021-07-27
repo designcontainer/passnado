@@ -1,11 +1,12 @@
 const { __ } = wp.i18n;
-const { Button } = wp.components;
+const { Button, Modal } = wp.components;
 const { useState, useEffect } = wp.element;
 
 import password from 'secure-random-password';
 
 import PartHeader from '../components/part-header.component';
 import Help from '../components/help.component';
+import CopyToClipboard from '../components/copy-to-clipboard.component';
 
 const MagicLink = (props) => {
 	const getKey = async () => {
@@ -19,13 +20,20 @@ const MagicLink = (props) => {
 	};
 
 	const [key, setKey] = useState(() => getKey());
+	const [confirmKey, setConfirmKey] = useState(false);
+	const [confirmDisable, setConfirmDisable] = useState(false);
 
-	const handleKey = () => {
+	const handleNewKey = () => {
 		const newKey = password.randomPassword({
 			length: 30,
 			characters: [password.lower, password.upper, password.digits],
 		});
-		setKey(newKey);
+
+		if (key !== '' && confirmKey === false) {
+			setConfirmKey(true);
+		} else {
+			setKey(newKey);
+		}
 	};
 
 	const urlWithKey = () => {
@@ -34,31 +42,87 @@ const MagicLink = (props) => {
 		return `${prot}//${host}/?key=${key}`;
 	};
 
-	return (
-		<div className="passnado-settings__part">
-			<PartHeader>{__('Magic link', 'passnado')}</PartHeader>
-			<p>
-				{__(
-					"Magic links are special URL's that can be given to clients for previewing a site without them having to login. Be careful who you give this to!",
-					'passnado'
-				)}
-			</p>
+	useEffect(() => {
+		setConfirmKey(false);
+		setConfirmDisable(false);
+		new wp.api.models.Settings({
+			passnado_key: key,
+		}).save();
+	}, [key]);
 
-			{typeof key !== 'object' && key !== '' ? (
-				<div className="passnado-form">
-					<input type="text" value={urlWithKey()} disabled />
+	return (
+		<>
+			<div
+				className={`passnado-settings__part ${
+					!props.passnado && 'passnado-settings__part--disabled'
+				}`}
+			>
+				<PartHeader>{__('Magic link', 'passnado')}</PartHeader>
+				<p>
+					{__(
+						"Magic links are special URL's that can be given to clients for previewing a site without them having to login. Be careful who you give this to!",
+						'passnado'
+					)}
+				</p>
+
+				{typeof key !== 'object' && key !== '' ? (
+					<>
+						<div className="passnado-form">
+							<input type="text" value={urlWithKey()} disabled />
+							<CopyToClipboard text={urlWithKey()} />
+						</div>
+					</>
+				) : (
+					<Help>Magic link is not enabled yet. Generate one to get started.</Help>
+				)}
+
+				<div className="passnado-button-group">
+					<Button
+						icon="admin-network"
+						isPrimary={true}
+						text={__('Generate link', 'passnado')}
+						onClick={handleNewKey}
+					></Button>
+					{typeof key !== 'object' && key !== '' && (
+						<Button
+							isDestructive={true}
+							text={__('Disable', 'passnado')}
+							onClick={() => setConfirmDisable(true)}
+						></Button>
+					)}
 				</div>
-			) : (
-				<Help>Magic link is not enabled yet. Generate a key to get started.</Help>
+			</div>
+
+			{confirmKey && (
+				<Modal
+					title={__('Are you sure you want to generate a new link?', 'passnado')}
+					onRequestClose={() => setConfirmKey(false)}
+				>
+					<p>This will render the previous link useless.</p>
+					<Button isPrimary={true} onClick={handleNewKey}>
+						{__('Yes', 'passnado')}
+					</Button>
+					<Button onClick={() => setConfirmKey(false)}>
+						{__('Cancel', 'passnado')}
+					</Button>
+				</Modal>
 			)}
 
-			<Button
-				icon="admin-network"
-				isPrimary={true}
-				text={__('Generate key', 'passnado')}
-				onClick={handleKey}
-			></Button>
-		</div>
+			{confirmDisable && (
+				<Modal
+					title={__('Are you sure you want to disable magic link?', 'passnado')}
+					onRequestClose={() => setConfirmDisable(false)}
+				>
+					<p>This will render the previous link useless.</p>
+					<Button isPrimary={true} onClick={() => setKey('')}>
+						{__('Yes', 'passnado')}
+					</Button>
+					<Button onClick={() => setConfirmDisable(false)}>
+						{__('Cancel', 'passnado')}
+					</Button>
+				</Modal>
+			)}
+		</>
 	);
 };
 

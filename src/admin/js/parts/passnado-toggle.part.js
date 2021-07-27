@@ -36,7 +36,7 @@ const passnadoToggle = (props) => {
 		}
 	};
 
-	const isDisabled = () => {
+	const isToggleDisabled = () => {
 		if (passnado !== true) return false;
 		if (props.canDisable === true) return false;
 		return true;
@@ -55,17 +55,21 @@ const passnadoToggle = (props) => {
 			<div className="passnado-settings__part">
 				<PartHeader>{__('Toggle password protection', 'passnado')}</PartHeader>
 
-				{isDisabled() ? (
+				{isToggleDisabled() && passnado && (
 					<Help>{__('Complete the checklist before going live', 'passnado')}</Help>
-				) : (
+				)}
+				{!isToggleDisabled() && passnado && (
 					<Help icon={false}>
-						{__("Looks like you're ready to go live! 🚀'", 'passnado')}
+						{__("Looks like you're ready to go live! 🚀", 'passnado')}
 					</Help>
+				)}
+				{!passnado && (
+					<Help>{__('Passnado is currently disabled for this site', 'passnado')}</Help>
 				)}
 
 				<Button
 					isPrimary={true}
-					disabled={isDisabled()}
+					disabled={isToggleDisabled()}
 					onClick={handlePassnado}
 					text={
 						passnado === true
