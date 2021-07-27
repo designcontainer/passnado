@@ -1,6 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 const outputDir = './build';
@@ -41,7 +42,7 @@ module.exports = (env) => {
 				}),
 			],
 			optimization: {
-				minimizer: [new CssMinimizerPlugin()],
+				minimizer: [new UglifyJsPlugin(), new CssMinimizerPlugin()],
 			},
 		},
 	];
