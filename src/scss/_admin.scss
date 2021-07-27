@@ -1,0 +1,44 @@
+.passnado-settings {
+	display: grid;
+	max-width: 1200px;
+	margin: rem-calc(40) auto;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+	gap: 20px;
+	grid-template-areas:
+		'checklist toggle .'
+		'checklist magic-link .'
+		'public-layout public-layout .';
+
+	&__part {
+		padding: rem-calc(20 30);
+		background-color: $white;
+		&:nth-child(1) {
+			grid-area: checklist;
+		}
+		&:nth-child(2) {
+			grid-area: toggle;
+		}
+		&:nth-child(3) {
+			grid-area: magic-link;
+		}
+		&:nth-child(4) {
+			grid-area: public-layout;
+		}
+
+		&--disabled {
+			cursor: not-allowed;
+			opacity: 0.5;
+			* {
+				pointer-events: none;
+			}
+		}
+		&--no-padding {
+			padding: 0;
+		}
+	}
+}
+
+.settings_page_passnado #wpcontent {
+	padding-left: 0;
+}

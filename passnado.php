@@ -2,13 +2,13 @@
 
 /**
  * @link     https://designcontainer.no
- * @since    1.0.0
+ * @since    2.0.0
  * @package  Password protect site
  *
  * Plugin Name: Passnado
  * Plugin URI:  https://designcontainer.no
  * Description: Password protect site
- * Version:     1.2.3
+ * Version:     2.0.0
  * Author:      Design Container AS
  * Author URI:  https://designcontainer.no
  * License:     GNU General Public License version 3.0
@@ -16,8 +16,48 @@
  * Text Domain: passnado
  */
 
-if (is_admin()) require_once plugin_dir_path( __FILE__ ) . 'admin/class-passnado-admin.php';
-if (is_admin()) require_once plugin_dir_path( __FILE__ ) . 'admin/class-passnado-widget.php';
-require_once plugin_dir_path( __FILE__ ) . 'public/class-passnado-public.php';
-require_once plugin_dir_path( __FILE__ ) . 'public/class-passnado-message.php';
-require_once plugin_dir_path( __FILE__ ) . 'public/class-passnado-fake-cookie.php';
+// If this file is called directly, abort.
+if (!defined('WPINC')) {
+	die;
+}
+
+/**
+ * Currently plugin version.
+ * Start at version 1.0.0 and use SemVer - https://semver.org
+ * Rename this for your plugin and update it as you release new versions.
+ */
+if (!defined('PASSNADO_VERSION')) {
+	define('PASSNADO_VERSION', '2.0.0');
+}
+
+/**
+ * The code that runs during plugin deactivation.
+ * This action is documented in includes/class-passnado-deactivator.php
+ */
+function deactivate_passnado() {
+	include_once plugin_dir_path(__FILE__) . 'includes/class-passnado-deactivator.php';
+	Passnado_Deactivator::deactivate();
+}
+
+register_deactivation_hook(__FILE__, 'deactivate_passnado');
+
+/**
+ * The core plugin class that is used to define internationalization,
+ * admin-specific hooks, and public-facing site hooks.
+ */
+require plugin_dir_path(__FILE__) . 'includes/class-passnado.php';
+
+/**
+ * Begins execution of the plugin.
+ *
+ * Since everything within the plugin is registered via hooks,
+ * then kicking off the plugin from this point in the file does
+ * not affect the page life cycle.
+ *
+ * @since 2.0.0
+ */
+function run_passnado() {
+	$plugin = new Passnado();
+	$plugin->run();
+}
+run_passnado();

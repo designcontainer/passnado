@@ -1,0 +1,12 @@
+ul.passnado-checklist {
+	li {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		.components-button.has-icon {
+			padding: 0;
+			height: inherit;
+		}
+	}
+}

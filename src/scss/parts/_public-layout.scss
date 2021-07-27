@@ -1,0 +1,26 @@
+.passnado-settings__part {
+	.passnado-message {
+		height: auto;
+		&__layout-selector {
+			.components-base-control__field {
+				display: flex;
+				align-items: center;
+			}
+			.components-radio-control__option {
+				margin: 0 !important;
+				input {
+					display: none;
+					&:checked + label {
+						border-color: var(--wp-admin-theme-color);
+					}
+				}
+				label {
+					border-bottom: rem-calc(3) solid $white;
+					display: block;
+					padding: rem-calc(12 30);
+					font-weight: bold;
+				}
+			}
+		}
+	}
+}
