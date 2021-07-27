@@ -42,7 +42,6 @@
 	.container {
 		max-width: rem-calc(500);
 		width: 100%;
-
 		header {
 			text-align: center;
 			.lock-icon {
@@ -53,6 +52,7 @@
 		.content {
 			text-align: center;
 			background-color: $white;
+			width: 100%;
 			h1 {
 				margin-top: 0;
 				font-size: rem-calc(26);
