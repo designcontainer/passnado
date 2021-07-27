@@ -1,4 +1,7 @@
-const { Icon } = wp.components;
+/**
+ * WordPress dependencies
+ */
+import { Icon } from '@wordpress/components';
 
 const Unlocked = () => {
 	return (

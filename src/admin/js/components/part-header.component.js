@@ -1,4 +1,7 @@
-const { __ } = wp.i18n;
+/**
+ * WordPress dependencies
+ */
+import { __ } from '@wordpress/i18n';
 
 const PartHeader = (props) => {
 	return (

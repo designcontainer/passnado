@@ -1,9 +1,18 @@
-const { __ } = wp.i18n;
-const { Spinner, CheckboxControl, BaseControl, Button } = wp.components;
-const { useState, useEffect } = wp.element;
+/**
+ * WordPress dependencies
+ */
+import { __ } from '@wordpress/i18n';
+import { CheckboxControl, Button } from '@wordpress/components';
+import { useState, useEffect } from '@wordpress/element';
 
+/**
+ * Hooks
+ */
 import useSetting from '../hooks/use-setting.hook';
 
+/**
+ * Components
+ */
 import PartContainer from '../components/part-container.component';
 import PartHeader from '../components/part-header.component';
 import FakeList from '../components/fake-list.component';
@@ -30,6 +39,11 @@ const Checklist = (props) => {
 		newTasks.push(task);
 		setTasks(newTasks);
 		setCustomTask('');
+	};
+
+	const addTaskOnEnter = (event) => {
+		if (event.keyCode !== 13) return;
+		addTask(event.target.value);
 	};
 
 	const deleteTask = (taskIndex) => {
@@ -81,6 +95,7 @@ const Checklist = (props) => {
 					placeholder={__('Add task ...', 'passnado')}
 					value={customTask}
 					onChange={(e) => setCustomTask(e.target.value)}
+					onKeyDown={(e) => addTaskOnEnter(e)}
 				/>
 				<Button
 					icon="plus"

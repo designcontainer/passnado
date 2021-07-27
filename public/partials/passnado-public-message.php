@@ -19,10 +19,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Protected webiste</title>
-	<link rel="stylesheet" href="<?php echo plugin_dir_url(dirname(__DIR__)) . 'build/css/app.frontend.css'; ?>">
+	<link rel="stylesheet" href="<?php echo plugin_dir_url(dirname(__DIR__)) . 'build/css/app.css'; ?>">
 </head>
 
-<body class="passnado-message">
+<body class="passnado-message <?php printf('passnado-message--%s', get_option('passnado_message_layout')); ?>">
 	<div class="container">
 		<header>
 			<svg class="lock-icon" viewBox="0 0 24 24" width="48" height="48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -42,9 +42,15 @@
 			</svg>
 		</header>
 		<section class="content">
-			<h1>This website is protected</h1>
-			<p>Please login to view this website</p>
-			<a href="<?php echo wp_login_url(); ?>" class="button">Go to login page</a>
+			<?php if ($title = get_option('passnado_message_title')) : ?>
+				<h1><?php echo $title; ?></h1>
+			<?php endif; ?>
+			<?php if ($text = get_option('passnado_message_text')) : ?>
+				<p><?php echo $text; ?></p>
+			<?php endif; ?>
+			<?php if ($login_label = get_option('passnado_login_link_text')) : ?>
+				<a href="<?php echo wp_login_url(); ?>" class="button"><?php echo $login_label; ?></a>
+			<?php endif; ?>
 		</section>
 	</div>
 </body>

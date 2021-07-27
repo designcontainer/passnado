@@ -32,7 +32,12 @@
 		"pre-commit": "^1.2.2"
 	},
 	"dependencies": {
+		"@wordpress/components": "^14.2.0",
+		"@wordpress/compose": "^4.2.0",
+		"@wordpress/element": "^3.2.0",
+		"@wordpress/i18n": "^4.2.0",
 		"canvas-confetti": "^1.4.0",
+		"react": "^17.0.2",
 		"secure-random-password": "^0.2.3",
 		"webpack-fix-style-only-entries": "^0.6.1"
 	}

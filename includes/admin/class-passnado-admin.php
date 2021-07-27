@@ -57,8 +57,8 @@ class Passnado_Admin {
      */
     public function enqueue_styles() {
         wp_enqueue_style(
-            $this->plugin_name . '-admin',
-            plugin_dir_url(dirname(dirname(__FILE__))) . 'build/css/app.admin.css',
+            $this->plugin_name,
+            plugin_dir_url(dirname(dirname(__FILE__))) . 'build/css/app.css',
             array('wp-components'),
             $this->version,
             'all'
@@ -77,9 +77,6 @@ class Passnado_Admin {
             plugin_dir_url(dirname(dirname(__FILE__))) . 'build/js/app.admin.js',
             array(
                 'wp-api',
-                'wp-i18n',
-                'wp-components',
-                'wp-element',
                 'wp-editor',
             ),
             $this->version,

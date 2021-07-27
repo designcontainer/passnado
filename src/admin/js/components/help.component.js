@@ -1,5 +1,8 @@
-const { __ } = wp.i18n;
-const { Dashicon } = wp.components;
+/**
+ * WordPress dependencies
+ */
+import { __ } from '@wordpress/i18n';
+import { Dashicon } from '@wordpress/components';
 
 const Help = (props) => {
 	return (

@@ -99,11 +99,21 @@ class Passnado_Settings {
 
         register_setting(
             'passnado_options_group',
+            'passnado_message_layout',
+            array(
+                'type'         => 'string',
+                'show_in_rest' => true,
+                'default'      => 'default',
+            )
+        );
+
+        register_setting(
+            'passnado_options_group',
             'passnado_message_title',
             array(
                 'type'         => 'string',
                 'show_in_rest' => true,
-                'default'      => '',
+                'default'      => 'This website is protected',
             )
         );
 
@@ -113,27 +123,7 @@ class Passnado_Settings {
             array(
                 'type'         => 'string',
                 'show_in_rest' => true,
-                'default'      => '',
-            )
-        );
-
-        register_setting(
-            'passnado_options_group',
-            'passnado_message_redirect',
-            array(
-                'type'         => 'string',
-                'show_in_rest' => true,
-                'default'      => '',
-            )
-        );
-
-        register_setting(
-            'passnado_options_group',
-            'passnado_login_link_show',
-            array(
-                'type'         => 'boolean',
-                'show_in_rest' => true,
-                'default'      => false,
+                'default'      => 'Please login to view this website',
             )
         );
 

@@ -1,15 +1,24 @@
-const { __ } = wp.i18n;
-const { Button, Modal } = wp.components;
-const { useState, useEffect } = wp.element;
+/**
+ * WordPress dependencies
+ */
+import { __ } from '@wordpress/i18n';
+import { Button, Modal } from '@wordpress/components';
+import { useState, useEffect } from '@wordpress/element';
 
-import password from 'secure-random-password';
-
+/**
+ * Hooks
+ */
 import useSetting from '../hooks/use-setting.hook';
 
+/**
+ * Components
+ */
 import PartContainer from '../components/part-container.component';
 import PartHeader from '../components/part-header.component';
 import Help from '../components/help.component';
 import CopyToClipboard from '../components/copy-to-clipboard.component';
+
+import password from 'secure-random-password';
 
 const MagicLink = (props) => {
 	const [key, setKey, loading] = useSetting('passnado_key');

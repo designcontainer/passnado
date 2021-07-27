@@ -1,13 +1,25 @@
-const { __ } = wp.i18n;
-const { Button, Modal } = wp.components;
-const { useState, useEffect } = wp.element;
+/**
+ * WordPress dependencies
+ */
+import { __ } from '@wordpress/i18n';
+import { Button, Modal } from '@wordpress/components';
+import { useState, useEffect } from '@wordpress/element';
 
+/**
+ * Hooks
+ */
 import useSetting from '../hooks/use-setting.hook';
 
+/**
+ * Components
+ */
 import PartContainer from '../components/part-container.component';
 import PartHeader from '../components/part-header.component';
 import Help from '../components/help.component';
 
+/**
+ * Utilities
+ */
 import Confetti from '../utils/confetti';
 
 const passnadoToggle = (props) => {
@@ -73,10 +85,10 @@ const passnadoToggle = (props) => {
 					title={__('Are you sure you want to disable Passnado?', 'passnado')}
 					onRequestClose={() => setConfirm(false)}
 				>
+					<p>{__('This will make the site public for everyone.', 'passnado')}</p>
 					<Button isPrimary={true} onClick={handlePassnado}>
 						{__('Yes', 'passnado')}
 					</Button>
-
 					<Button onClick={() => setConfirm(false)}>{__('Cancel', 'passnado')}</Button>
 				</Modal>
 			)}

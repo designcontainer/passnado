@@ -1,4 +1,7 @@
-const { useState, useEffect } = wp.element;
+/**
+ * WordPress dependencies
+ */
+import { useState, useEffect } from '@wordpress/element';
 
 const useSetting = (key) => {
 	const getSavedSetting = async (key) => {

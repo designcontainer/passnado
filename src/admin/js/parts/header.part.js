@@ -1,5 +1,11 @@
-const { __ } = wp.i18n;
+/**
+ * WordPress dependencies
+ */
+import { __ } from '@wordpress/i18n';
 
+/**
+ * Icons
+ */
 import Locked from '../icons/locked.icon';
 import Unlocked from '../icons/unlocked.icon';
 
