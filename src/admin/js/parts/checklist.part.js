@@ -2,35 +2,15 @@ const { __ } = wp.i18n;
 const { Spinner, CheckboxControl, BaseControl, Button } = wp.components;
 const { useState, useEffect } = wp.element;
 
+import useSetting from '../hooks/use-setting.hook';
+
+import PartContainer from '../components/part-container.component';
 import PartHeader from '../components/part-header.component';
 import FakeList from '../components/fake-list.component';
 
 const Checklist = (props) => {
-	const getTasks = async () => {
-		try {
-			const settings = new wp.api.models.Settings();
-			const response = await settings.fetch();
-			setTasks(response.passnado_checklist);
-			setLoading(false);
-		} catch (err) {
-			throw new Error(`Failed loading tasks: ${err}`);
-		}
-	};
-
-	const [loading, setLoading] = useState(true);
-	const [tasks, setTasks] = useState(() => getTasks());
+	const [tasks, setTasks, loading] = useSetting('passnado_checklist');
 	const [customTask, setCustomTask] = useState('');
-
-	useEffect(() => {
-		if (!tasks.length) return;
-
-		const allDone = !tasks.some((e) => e.done === false);
-		props.done(allDone);
-
-		new wp.api.models.Settings({
-			passnado_checklist: tasks,
-		}).save();
-	}, [tasks]);
 
 	const handleTasks = (taskIndex, value) => {
 		let newTasks = [...tasks];
@@ -58,8 +38,14 @@ const Checklist = (props) => {
 		setTasks(newTasks);
 	};
 
+	useEffect(() => {
+		if (!tasks.length) return;
+		const allDone = !tasks.some((e) => e.done === false);
+		props.done(allDone);
+	}, [tasks]);
+
 	return (
-		<div className="passnado-settings__part">
+		<PartContainer>
 			<PartHeader>{__('Go live checklist', 'passnado')}</PartHeader>
 
 			{loading ? (
@@ -102,7 +88,7 @@ const Checklist = (props) => {
 					onClick={() => addTask(customTask)}
 				/>
 			</div>
-		</div>
+		</PartContainer>
 	);
 };
 

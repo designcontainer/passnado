@@ -4,22 +4,15 @@ const { useState, useEffect } = wp.element;
 
 import password from 'secure-random-password';
 
+import useSetting from '../hooks/use-setting.hook';
+
+import PartContainer from '../components/part-container.component';
 import PartHeader from '../components/part-header.component';
 import Help from '../components/help.component';
 import CopyToClipboard from '../components/copy-to-clipboard.component';
 
 const MagicLink = (props) => {
-	const getKey = async () => {
-		try {
-			const settings = new wp.api.models.Settings();
-			const response = await settings.fetch();
-			setKey(response.passnado_key);
-		} catch (err) {
-			throw new Error(`Failed loading tasks: ${err}`);
-		}
-	};
-
-	const [key, setKey] = useState(() => getKey());
+	const [key, setKey, loading] = useSetting('passnado_key');
 	const [confirmKey, setConfirmKey] = useState(false);
 	const [confirmDisable, setConfirmDisable] = useState(false);
 
@@ -45,18 +38,11 @@ const MagicLink = (props) => {
 	useEffect(() => {
 		setConfirmKey(false);
 		setConfirmDisable(false);
-		new wp.api.models.Settings({
-			passnado_key: key,
-		}).save();
 	}, [key]);
 
 	return (
 		<>
-			<div
-				className={`passnado-settings__part ${
-					!props.passnado && 'passnado-settings__part--disabled'
-				}`}
-			>
+			<PartContainer disabled={!props.passnado || loading}>
 				<PartHeader>{__('Magic link', 'passnado')}</PartHeader>
 				<p>
 					{__(
@@ -91,7 +77,7 @@ const MagicLink = (props) => {
 						></Button>
 					)}
 				</div>
-			</div>
+			</PartContainer>
 
 			{confirmKey && (
 				<Modal

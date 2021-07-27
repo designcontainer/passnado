@@ -6,7 +6,6 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const outputDir = './build';
 const entry = {
 	'./js/app.admin': './src/admin/js/app.js',
-	'./js/app.frontend': './src/public/js/app.js',
 	'./css/app.admin': './src/admin/scss/app.scss',
 	'./css/app.frontend': './src/public/scss/app.scss',
 };

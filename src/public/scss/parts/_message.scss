@@ -1,0 +1,32 @@
+.passnado-message {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	background-color: $light-blue;
+}
+
+.container {
+	margin: rem-calc(18);
+}
+
+header {
+	text-align: center;
+	margin: rem-calc(36);
+	.lock-icon {
+		fill: $blue;
+	}
+}
+
+.content {
+	max-width: rem-calc(500);
+	margin-bottom: rem-calc(36);
+	padding: rem-calc(40 40);
+	border-radius: rem-calc(8);
+	text-align: center;
+	background-color: $white;
+	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	.button {
+		margin-top: rem-calc(40);
+	}
+}

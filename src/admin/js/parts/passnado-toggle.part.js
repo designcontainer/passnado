@@ -2,36 +2,29 @@ const { __ } = wp.i18n;
 const { Button, Modal } = wp.components;
 const { useState, useEffect } = wp.element;
 
-import Help from '../components/help.component';
+import useSetting from '../hooks/use-setting.hook';
+
+import PartContainer from '../components/part-container.component';
 import PartHeader from '../components/part-header.component';
+import Help from '../components/help.component';
 
 import Confetti from '../utils/confetti';
 
 const passnadoToggle = (props) => {
-	const getPassnado = async () => {
-		try {
-			const settings = new wp.api.models.Settings();
-			const response = await settings.fetch();
-			setPassnado(response.passnado_protect);
-		} catch (err) {
-			throw new Error(`Failed loading setting: ${err}`);
-		}
-	};
-
-	const [passnado, setPassnado] = useState(() => getPassnado());
+	const [passnado, setPassnado, loading] = useSetting('passnado_protect');
 	const [confirm, setConfirm] = useState(false);
 
 	const handlePassnado = () => {
-		console.log(`passnado: ${passnado}`);
-		console.log(`confirm: ${confirm}`);
-
-		if (passnado === true && confirm === true) {
+		if (passnado === true && confirm === false) {
+			// If the popup is not open and passnado is active
+			setConfirm(true);
+		} else if (passnado === true && confirm === true) {
+			// If the popup is open and pasnado is active
 			setPassnado(false);
 			setConfirm(false);
 			Confetti();
-		} else if (passnado === true && confirm === false) {
-			setConfirm(true);
 		} else {
+			// If passnado is not active
 			setPassnado(true);
 		}
 	};
@@ -44,15 +37,11 @@ const passnadoToggle = (props) => {
 
 	useEffect(() => {
 		props.passnado(passnado);
-
-		new wp.api.models.Settings({
-			passnado_protect: passnado,
-		}).save();
 	}, [passnado]);
 
 	return (
 		<>
-			<div className="passnado-settings__part">
+			<PartContainer disabled={loading}>
 				<PartHeader>{__('Toggle password protection', 'passnado')}</PartHeader>
 
 				{isToggleDisabled() && passnado && (
@@ -77,7 +66,7 @@ const passnadoToggle = (props) => {
 							: __('Enable Passnado', 'passnado')
 					}
 				/>
-			</div>
+			</PartContainer>
 
 			{confirm && (
 				<Modal

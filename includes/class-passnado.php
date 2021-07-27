@@ -153,6 +153,7 @@ class Passnado {
 	private function define_public_hooks() {
 
 		$plugin_public = new Passnado_Public($this->get_plugin_name(), $this->get_version());
+		$this->loader->add_action('template_redirect', $plugin_public, 'init_protection');
 	}
 
 	/**
