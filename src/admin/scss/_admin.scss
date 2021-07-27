@@ -1,4 +1,30 @@
 .passnado-settings {
-	max-width: 580px;
-	margin: 40px auto;
+	display: grid;
+	max-width: 1200px;
+	margin: rem-calc(40) auto;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+	gap: 20px;
+	grid-template-areas:
+		'checklist toggle .'
+		'checklist magic-link .'
+		'. . .';
+
+	&__part {
+		padding: rem-calc(20 30);
+		background-color: $white;
+		&:nth-child(1) {
+			grid-area: checklist;
+		}
+		&:nth-child(2) {
+			grid-area: toggle;
+		}
+		&:nth-child(3) {
+			grid-area: magic-link;
+		}
+	}
+}
+
+.settings_page_passnado #wpcontent {
+	padding-left: 0;
 }

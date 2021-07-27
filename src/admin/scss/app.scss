@@ -1,3 +1,11 @@
+@import 'var';
+@import 'utils';
 @import 'admin';
 
-@import 'components/header';
+@import 'parts/header';
+@import 'parts/checklist';
+
+@import 'components/part-header';
+@import 'components/form';
+@import 'components/help';
+@import 'components/fake-list';

@@ -1,0 +1,27 @@
+.passnado-fake-list {
+	margin: rem-calc(14 0);
+	span {
+		display: block;
+		width: 100%;
+		height: rem-calc(20);
+		margin-bottom: rem-calc(8);
+		border-radius: rem-calc(2);
+		background: darkgray;
+		background: linear-gradient(to right, #eeeeee 10%, #dddddd 18%, #eeeeee 33%);
+		background-size: 100% rem-calc(100);
+		animation-name: passnadoShimmer;
+		animation-duration: 3s;
+		animation-timing-function: linear;
+		animation-iteration-count: infinite;
+		animation-fill-mode: forwards;
+	}
+}
+
+@keyframes passnadoShimmer {
+	0% {
+		background-position: -468px 0;
+	}
+	100% {
+		background-position: 468px 0;
+	}
+}

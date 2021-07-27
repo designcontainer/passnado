@@ -32,6 +32,8 @@
 		"pre-commit": "^1.2.2"
 	},
 	"dependencies": {
+		"canvas-confetti": "^1.4.0",
+		"secure-random-password": "^0.2.3",
 		"webpack-fix-style-only-entries": "^0.6.1"
 	}
 }

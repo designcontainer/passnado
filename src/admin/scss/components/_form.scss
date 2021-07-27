@@ -1,0 +1,14 @@
+.passnado-form {
+	display: flex;
+	align-items: center;
+	margin-bottom: rem-calc(18);
+	column-gap: rem-calc(10);
+	input[type='text'] {
+		width: 100%;
+		padding: rem-calc(8);
+		border: 0;
+		border-bottom: rem-calc(2) solid rgb(111, 111, 111);
+		border-radius: 0;
+		background-color: #f2f2f2;
+	}
+}
