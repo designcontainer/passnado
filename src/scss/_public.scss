@@ -12,12 +12,12 @@
 		align-items: center;
 		.container {
 			margin: rem-calc(18);
-		}
-		.content {
-			margin: rem-calc(36 0);
-			padding: rem-calc(40);
-			border-radius: rem-calc(8);
-			box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+			.content {
+				margin: rem-calc(36 0);
+				padding: rem-calc(40);
+				border-radius: rem-calc(8);
+				box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+			}
 		}
 	}
 
@@ -42,39 +42,39 @@
 	.container {
 		max-width: rem-calc(500);
 		width: 100%;
-	}
 
-	header {
-		text-align: center;
-		.lock-icon {
-			fill: $blue;
-		}
-	}
-
-	.content {
-		text-align: center;
-		background-color: $white;
-		h1 {
-			margin-top: 0;
-			font-size: rem-calc(26);
-		}
-		.button {
-			display: block;
-			max-width: 300px;
-			margin-top: rem-calc(40);
-			margin-right: auto;
-			margin-left: auto;
-			padding: rem-calc(16);
-			border-radius: rem-calc(6);
-			color: $white;
+		header {
 			text-align: center;
-			text-decoration: none;
-			background-color: $blue;
-			transition: background-color 0.2s ease-in-out;
+			.lock-icon {
+				fill: $blue;
+			}
+		}
 
-			&:hover,
-			&:focus {
-				background-color: darken($blue, 10%);
+		.content {
+			text-align: center;
+			background-color: $white;
+			h1 {
+				margin-top: 0;
+				font-size: rem-calc(26);
+			}
+			.button {
+				display: block;
+				max-width: 300px;
+				margin-top: rem-calc(40);
+				margin-right: auto;
+				margin-left: auto;
+				padding: rem-calc(16);
+				border-radius: rem-calc(6);
+				color: $white;
+				text-align: center;
+				text-decoration: none;
+				background-color: $blue;
+				transition: background-color 0.2s ease-in-out;
+
+				&:hover,
+				&:focus {
+					background-color: darken($blue, 10%);
+				}
 			}
 		}
 	}

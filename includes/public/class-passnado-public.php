@@ -105,7 +105,9 @@ class Passnado_Public {
 	private function has_protection_cookie() {
 		if (true === empty($this->key))                return false; // Check if key is set in options
 		if (false === isset($_COOKIE['passnado_key'])) return false; // Check if cookie is set
-		if ($this->key !== $_COOKIE['passnado_key'])   return false; // Check if key matches cookie val
+
+		$decoded_key = base64_decode($_COOKIE['passnado_key']);
+		if ($this->key !== $decoded_key)                return false; // Check if key matches cookie val
 
 		return true;
 	}
@@ -118,8 +120,9 @@ class Passnado_Public {
 	 * @param  void
 	 */
 	private function set_protection_cookie($key) {
-		$this->set_wpe_anti_cache_cookie($_GET['key']);
-		setcookie('passnado_key', $key, $this->cookie_exp, "/");
+		$this->set_wpe_anti_cache_cookie();
+		$encoded_key = base64_encode($key);
+		setcookie('passnado_key', $encoded_key, $this->cookie_exp, "/");
 	}
 
 	/**
