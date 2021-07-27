@@ -22,7 +22,7 @@
 	<link rel="stylesheet" href="<?php echo plugin_dir_url(dirname(__DIR__)) . 'build/css/app.css'; ?>">
 </head>
 
-<body class="passnado-message <?php printf('passnado-message--%s', get_option('passnado_message_layout')); ?>">
+<body class="passnado-message <?php printf('passnado-message--%s ', get_option('passnado_message_layout')); ?>">
 	<div class="container">
 		<header>
 			<svg class="lock-icon" viewBox="0 0 24 24" width="48" height="48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -48,7 +48,7 @@
 			<?php if ($text = get_option('passnado_message_text')) : ?>
 				<p><?php echo $text; ?></p>
 			<?php endif; ?>
-			<?php if ($login_label = get_option('passnado_login_link_text')) : ?>
+			<?php if ($login_label = get_option('passnado_message_login_label')) : ?>
 				<a href="<?php echo wp_login_url(); ?>" class="button"><?php echo $login_label; ?></a>
 			<?php endif; ?>
 		</section>

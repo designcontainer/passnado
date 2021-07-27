@@ -22,7 +22,7 @@
  * Also maintains the unique identifier of this plugin as well as the current
  * version of the plugin.
  *
- * @since      1.0.0
+ * @since      2.0.0
  * @package    Passnado
  * @subpackage Passnado/includes
  * @author     Design Container AS <tech@designcontainer.no>

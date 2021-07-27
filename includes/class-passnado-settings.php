@@ -4,7 +4,7 @@
  * The admin-specific functionality of the plugin.
  *
  * @link  https://designcontainer.no
- * @since 1.0.0
+ * @since 2.0.0
  *
  * @package    Passnado
  * @subpackage Passnado/includes
@@ -26,7 +26,7 @@ class Passnado_Settings {
     /**
      * The ID of this plugin.
      *
-     * @since  1.0.0
+     * @since  2.0.0
      * @author Rostislav Melkumyan
      * @access private
      * @var    string    $plugin_name    The ID of this plugin.
@@ -36,7 +36,7 @@ class Passnado_Settings {
     /**
      * The version of this plugin.
      *
-     * @since  1.0.0
+     * @since  2.0.0
      * @author Rostislav Melkumyan
      * @access private
      * @var    string    $version    The current version of this plugin.
@@ -46,7 +46,7 @@ class Passnado_Settings {
     /**
      * Register plugin settings
      *
-     * @since  1.0.0
+     * @since  2.0.0
      * @author Rostislav Melkumyan
      * @access private
      * @var    string    $settings    Method for registering settings

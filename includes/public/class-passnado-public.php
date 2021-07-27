@@ -85,7 +85,7 @@ class Passnado_Public {
 	 * @author Rostislav Melkumyan
 	 * @return boolean
 	 */
-	public function has_protection_param() {
+	private function has_protection_param() {
 		if (true === empty($this->key))    return false; // Check if key is set in options
 		if (false === isset($_GET['key'])) return false; // Check if key is set in param
 		if ($this->key !== $_GET['key'])   return false; // Check if key matches param val
@@ -102,7 +102,7 @@ class Passnado_Public {
 	 * @author Rostislav Melkumyan
 	 * @return boolean
 	 */
-	public function has_protection_cookie() {
+	private function has_protection_cookie() {
 		if (true === empty($this->key))                return false; // Check if key is set in options
 		if (false === isset($_COOKIE['passnado_key'])) return false; // Check if cookie is set
 		if ($this->key !== $_COOKIE['passnado_key'])   return false; // Check if key matches cookie val
@@ -117,7 +117,7 @@ class Passnado_Public {
 	 * @author Rostislav Melkumyan
 	 * @param  void
 	 */
-	public function set_protection_cookie($key) {
+	private function set_protection_cookie($key) {
 		$this->set_wpe_anti_cache_cookie($_GET['key']);
 		setcookie('passnado_key', $key, $this->cookie_exp, "/");
 	}
@@ -130,7 +130,7 @@ class Passnado_Public {
 	 * @since  2.0.0
 	 * @author Rostislav Melkumyan
 	 */
-	public function set_wpe_anti_cache_cookie() {
+	private function set_wpe_anti_cache_cookie() {
 		if ($this->has_logged_in_user_cookie()) return; // Return if cookie already exists.
 		$fake_user = '_fake_user_';
 		$cookie = 'wordpress_logged_in_' . md5($fake_user);
@@ -145,7 +145,7 @@ class Passnado_Public {
 	 * @author Rostislav Melkumyan
 	 * @return boolean
 	 */
-	public function has_logged_in_user_cookie() {
+	private function has_logged_in_user_cookie() {
 		$prefix = 'wordpress_logged_in_';
 		foreach ($_COOKIE as $cookie => $val) {
 			if (0 === strpos($cookie, $prefix)) return true;

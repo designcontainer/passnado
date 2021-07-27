@@ -2,7 +2,7 @@
 
 /**
  * @link     https://designcontainer.no
- * @since    1.0.0
+ * @since    2.0.0
  * @package  Password protect site
  *
  * Plugin Name: Passnado
@@ -30,26 +30,16 @@ if (!defined('PASSNADO_VERSION')) {
 	define('PASSNADO_VERSION', '2.0.0');
 }
 
-// /**
-//  * The code that runs during plugin activation.
-//  * This action is documented in includes/class-passnado-activator.php
-//  */
-// function activate_passnado() {
-// 	include_once plugin_dir_path(__FILE__) . 'includes/class-passnado-activator.php';
-// 	Passnado_Activator::activate();
-// }
+/**
+ * The code that runs during plugin deactivation.
+ * This action is documented in includes/class-passnado-deactivator.php
+ */
+function deactivate_passnado() {
+	include_once plugin_dir_path(__FILE__) . 'includes/class-passnado-deactivator.php';
+	Passnado_Deactivator::deactivate();
+}
 
-// /**
-//  * The code that runs during plugin deactivation.
-//  * This action is documented in includes/class-passnado-deactivator.php
-//  */
-// function deactivate_passnado() {
-// 	include_once plugin_dir_path(__FILE__) . 'includes/class-passnado-deactivator.php';
-// 	Passnado_Deactivator::deactivate();
-// }
-
-// register_activation_hook(__FILE__, 'activate_passnado');
-// register_deactivation_hook(__FILE__, 'deactivate_passnado');
+register_deactivation_hook(__FILE__, 'deactivate_passnado');
 
 /**
  * The core plugin class that is used to define internationalization,
@@ -64,7 +54,7 @@ require plugin_dir_path(__FILE__) . 'includes/class-passnado.php';
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.
  *
- * @since 1.0.0
+ * @since 2.0.0
  */
 function run_passnado() {
 	$plugin = new Passnado();
