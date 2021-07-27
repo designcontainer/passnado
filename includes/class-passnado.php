@@ -138,7 +138,6 @@ class Passnado {
 	private function define_admin_hooks() {
 
 		$plugin_admin = new Passnado_Admin($this->get_plugin_name(), $this->get_version());
-
 		$this->loader->add_action('admin_menu', $plugin_admin, 'register_options_page');
 	}
 
@@ -151,7 +150,6 @@ class Passnado {
 	 * @access private
 	 */
 	private function define_public_hooks() {
-
 		$plugin_public = new Passnado_Public($this->get_plugin_name(), $this->get_version());
 		$this->loader->add_action('template_redirect', $plugin_public, 'init_protection');
 	}
@@ -164,7 +162,6 @@ class Passnado {
 	 * @access private
 	 */
 	private function define_settings_hooks() {
-
 		$plugin_settings = new Passnado_Settings($this->get_plugin_name(), $this->get_version());
 	}
 
