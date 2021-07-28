@@ -11,8 +11,8 @@
 	&__modal {
 		z-index: 20;
 		position: absolute;
-		top: 100%;
-		right: rem-calc(-18);
+		bottom: calc(100% + #{rem-calc(10)});
+		left: 0;
 		max-width: rem-calc(400);
 		padding: rem-calc(16);
 		border-radius: rem-calc(4);

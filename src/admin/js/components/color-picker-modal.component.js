@@ -30,7 +30,7 @@ const ColorPickerModal = (props) => {
 					<div class="passnado-button-group">
 						<Button
 							isPrimary={true}
-							text={__('Save', 'passnado')}
+							text={__('Set', 'passnado')}
 							onClick={() => saveColor()}
 						/>
 						<Button

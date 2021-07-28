@@ -2,12 +2,8 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { RadioControl } from '@wordpress/components';
-
-/**
- * Hooks
- */
-import useSetting from '../hooks/use-setting.hook';
+import { RadioControl, Button } from '@wordpress/components';
+import { useState, useEffect } from '@wordpress/element';
 
 /**
  * Components
@@ -17,11 +13,40 @@ import TransparentInput from '../components/transparent-input.component';
 import ColorPickerModal from '../components/color-picker-modal.component';
 
 const PublicLayout = () => {
-	const [layout, setLayout] = useSetting('passnado_message_layout');
-	const [title, setTitle, titleLoading] = useSetting('passnado_message_title');
-	const [text, setText, textLoading] = useSetting('passnado_message_text');
-	const [login, setLogin, loginLoading] = useSetting('passnado_login_link_text');
-	const [color, setColor] = useSetting('passnado_message_color');
+	useEffect(async () => {
+		try {
+			const settings = new wp.api.models.Settings();
+			const response = await settings.fetch();
+			setLayout(response.passnado_message_layout);
+			setTitle(response.passnado_message_title);
+			setText(response.passnado_message_text);
+			setLogin(response.passnado_login_link_text);
+			setColor(response.passnado_message_color);
+		} catch (error) {
+			setError(error);
+		} finally {
+			setLoading(false);
+		}
+	}, []);
+
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState('');
+	// Settings
+	const [layout, setLayout] = useState('');
+	const [title, setTitle] = useState('');
+	const [text, setText] = useState('');
+	const [login, setLogin] = useState('');
+	const [color, setColor] = useState('');
+
+	const saveSettings = () => {
+		new wp.api.models.Settings({
+			passnado_message_layout: layout,
+			passnado_message_title: title,
+			passnado_message_text: text,
+			passnado_login_link_text: login,
+			passnado_message_color: color,
+		}).save();
+	};
 
 	return (
 		<PartContainer noPadding={true}>
@@ -34,12 +59,18 @@ const PublicLayout = () => {
 					]}
 					onChange={(value) => setLayout(value)}
 				/>
-				<ColorPickerModal color={color} onChange={(value) => setColor(value)} />
+				<Button
+					isPrimary={true}
+					isSmall={true}
+					text={__('Save', 'passnado')}
+					onClick={() => saveSettings()}
+				/>
 			</div>
 			<div className={`passnado-message passnado-message--${layout}`}>
+				<ColorPickerModal color={color} onChange={(value) => setColor(value)} />
 				<style>{`.passnado-message{--passnado-message-color: ${color}}`}</style>
 				<div className="container">
-					{!titleLoading && !textLoading && !loginLoading && (
+					{!loading && (
 						<section className="content">
 							<h1>
 								<TransparentInput
