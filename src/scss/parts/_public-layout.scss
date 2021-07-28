@@ -1,7 +1,10 @@
 .passnado-settings__part {
 	.passnado-message {
 		height: auto;
-		&__layout-selector {
+		&__layout-nav {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
 			.components-base-control__field {
 				display: flex;
 				align-items: center;
