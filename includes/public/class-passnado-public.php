@@ -57,7 +57,7 @@ class Passnado_Public {
 		$this->version     = $version;
 		$this->cookie_exp  = time() + 7 * 24 * 60 * 60; // 1 Week
 
-		$this->protect = get_option('passnado_protect');
+		$this->protect = get_option('passnado_protect', true);
 		$this->key     = get_option('passnado_key');
 	}
 
@@ -69,15 +69,29 @@ class Passnado_Public {
 	 * @return mixed
 	 */
 	public function init_protection() {
+
 		// Check with empty cause WordPress settings are weird
 		// https://developer.wordpress.org/reference/functions/get_option/#description
-		if (true === empty($this->protect))          return; // Return if protection is not enabled. 
-		if (true === is_user_logged_in())            return; // Return if use is logged in
-		if (true === $this->has_protection_param())  return; // Return if authenticated with url param
-		if (true === $this->has_protection_cookie()) return; // Return if authenticated with cookie
+		if (false === $this->is_protection_enabled()) return; // Return if protection is not enabled. 
+		if (true === is_user_logged_in())             return; // Return if use is logged in
+		if (true === $this->has_protection_param())   return; // Return if authenticated with url param
+		if (true === $this->has_protection_cookie())  return; // Return if authenticated with cookie
 
 		echo $this->render_message();
 		die();
+	}
+
+	/**
+	 * Check if Passnado protection is enabled
+	 *
+	 * @since  2.1.1
+	 * @author Rostislav Melkumyan
+	 * @return boolean
+	 */
+	private function is_protection_enabled() {
+		if ("1" === $this->protect)   return true;
+		if (true === $this->protect) return true;
+		return false;
 	}
 
 	/**
