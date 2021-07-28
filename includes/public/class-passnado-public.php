@@ -69,7 +69,9 @@ class Passnado_Public {
 	 * @return mixed
 	 */
 	public function init_protection() {
-		if (false === $this->protect)                return; // Return if protection is not enabled
+		// Check with empty cause WordPress settings are weird
+		// https://developer.wordpress.org/reference/functions/get_option/#description
+		if (true === empty($this->protect))          return; // Return if protection is not enabled. 
 		if (true === is_user_logged_in())            return; // Return if use is logged in
 		if (true === $this->has_protection_param())  return; // Return if authenticated with url param
 		if (true === $this->has_protection_cookie()) return; // Return if authenticated with cookie

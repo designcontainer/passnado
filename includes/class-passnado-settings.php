@@ -139,6 +139,16 @@ class Passnado_Settings {
 
         register_setting(
             'passnado_options_group',
+            'passnado_message_color',
+            array(
+                'type'         => 'string',
+                'show_in_rest' => true,
+                'default'      => '#247cf9',
+            )
+        );
+
+        register_setting(
+            'passnado_options_group',
             'passnado_checklist',
             array(
                 'type'         => 'array',

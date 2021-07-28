@@ -14,25 +14,30 @@ import useSetting from '../hooks/use-setting.hook';
  */
 import PartContainer from '../components/part-container.component';
 import TransparentInput from '../components/transparent-input.component';
+import ColorPickerModal from '../components/color-picker-modal.component';
 
 const PublicLayout = () => {
 	const [layout, setLayout] = useSetting('passnado_message_layout');
 	const [title, setTitle, titleLoading] = useSetting('passnado_message_title');
 	const [text, setText, textLoading] = useSetting('passnado_message_text');
 	const [login, setLogin, loginLoading] = useSetting('passnado_login_link_text');
+	const [color, setColor] = useSetting('passnado_message_color');
 
 	return (
 		<PartContainer noPadding={true}>
-			<RadioControl
-				className="passnado-message__layout-selector"
-				selected={layout}
-				options={[
-					{ label: 'Default', value: 'default' },
-					{ label: 'Background', value: 'image' },
-				]}
-				onChange={(value) => setLayout(value)}
-			/>
+			<div className="passnado-message__layout-nav">
+				<RadioControl
+					selected={layout}
+					options={[
+						{ label: 'Default', value: 'default' },
+						{ label: 'Background', value: 'image' },
+					]}
+					onChange={(value) => setLayout(value)}
+				/>
+				<ColorPickerModal color={color} onChange={(value) => setColor(value)} />
+			</div>
 			<div className={`passnado-message passnado-message--${layout}`}>
+				<style>{`.passnado-message{--passnado-message-color: ${color}}`}</style>
 				<div className="container">
 					{!titleLoading && !textLoading && !loginLoading && (
 						<section className="content">

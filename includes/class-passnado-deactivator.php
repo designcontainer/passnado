@@ -37,6 +37,7 @@ class Passnado_Deactivator {
         delete_option('passnado_message_title');
         delete_option('passnado_message_text');
         delete_option('passnado_login_link_text');
+        delete_option('passnado_message_color');
         delete_option('passnado_checklist');
     }
 }

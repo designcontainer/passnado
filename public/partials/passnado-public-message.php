@@ -20,6 +20,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Protected webiste</title>
 	<link rel="stylesheet" href="<?php echo plugin_dir_url(dirname(__DIR__)) . 'build/css/app.css'; ?>">
+	<style>
+		.passnado-message {
+			--passnado-message-color: <?php echo get_option('passnado_message_color'); ?>;
+		}
+	</style>
 </head>
 
 <body class="passnado-message <?php printf('passnado-message--%s ', get_option('passnado_message_layout')); ?>">
@@ -48,7 +53,7 @@
 			<?php if ($text = get_option('passnado_message_text')) : ?>
 				<p><?php echo $text; ?></p>
 			<?php endif; ?>
-			<?php if ($login_label = get_option('passnado_message_login_label')) : ?>
+			<?php if ($login_label = get_option('passnado_login_link_text')) : ?>
 				<a href="<?php echo wp_login_url(); ?>" class="button"><?php echo $login_label; ?></a>
 			<?php endif; ?>
 		</section>
