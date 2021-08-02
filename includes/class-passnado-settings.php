@@ -57,7 +57,43 @@ class Passnado_Settings {
 
         $this->plugin_name = $plugin_name;
         $this->version = $version;
+        $this->default_checklist = $this->get_default_checklist();
         $this->settings = $this->register_settings();
+    }
+
+    /**
+     * Get the default checklist items from csv file in plugin root folder
+     *
+     * @since 2.2.0
+     * @author Rostislav Melkumyan
+     * @return array Array of objects for tasks
+     */
+    public function get_default_checklist() {
+        $file_name = 'passnado-checklist.csv';
+        $csv_file = plugin_dir_path(dirname(dirname(__FILE__))) . $this->plugin_name . '/' . $file_name;
+
+        // Get the file from the root directory in active theme if it exists.
+        if (file_exists(get_template_directory_uri() . '/' . $file_name)) {
+            $csv_file = get_template_directory_uri() . '/' . $file_name;
+        }
+
+        $checklist_array = [];
+        $row = 1;
+
+        if (false !== ($handle = fopen($csv_file, "r"))) :
+            while (false !== ($data = fgetcsv($handle, 1000, ","))) :
+                $row++;
+                $checklist_array[] = array(
+                    'task'   => $data[0],
+                    'done'   => $data[1] === 'true' ? true : false,
+                    'custom' => false,
+                );
+            endwhile;
+            fclose($handle);
+        endif;
+
+        error_log(print_r($checklist_array, true));
+        return $checklist_array;
     }
 
     /**
@@ -162,58 +198,7 @@ class Passnado_Settings {
                         ),
                     ),
                 ),
-                'default' => array(
-                    array(
-                        'task'   => 'Setup your install',
-                        'done'   => true,
-                        'custom' => false,
-                    ),
-                    array(
-                        'task'   => 'Install Passnado',
-                        'done'   => true,
-                        'custom' => false,
-                    ),
-                    array(
-                        'task'   => 'Configure Cookiebot',
-                        'done'   => false,
-                        'custom' => false,
-                    ),
-                    array(
-                        'task'   => 'Install the Cookiebot Popup plugin',
-                        'done'   => false,
-                        'custom' => false,
-                    ),
-                    array(
-                        'task'   => 'Configure Google Tag Manager',
-                        'done'   => false,
-                        'custom' => false,
-                    ),
-                    array(
-                        'task'   => 'Configure Google Analytics',
-                        'done'   => false,
-                        'custom' => false,
-                    ),
-                    array(
-                        'task'   => 'Add all used plugins to the Composer file',
-                        'done'   => false,
-                        'custom' => false,
-                    ),
-                    array(
-                        'task'   => 'Add a favicon',
-                        'done'   => false,
-                        'custom' => false,
-                    ),
-                    array(
-                        'task'   => 'Add SMTP credentials',
-                        'done'   => false,
-                        'custom' => false,
-                    ),
-                    array(
-                        'task'   => 'Update WordPress URLs',
-                        'done'   => false,
-                        'custom' => false,
-                    ),
-                )
+                'default' => $this->default_checklist,
             )
         );
     }

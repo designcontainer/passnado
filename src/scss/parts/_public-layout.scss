@@ -1,6 +1,9 @@
 .passnado-settings__part {
 	.passnado-message {
+		position: relative;
 		height: auto;
+		border: rem-calc(1) solid $light-gray;
+		border-top: 0;
 		&__layout-nav {
 			display: flex;
 			align-items: center;
@@ -29,9 +32,10 @@
 		.color-picker-modal {
 			background-color: $white;
 			position: absolute;
-			left: rem-calc(12);
+			right: rem-calc(12);
 			bottom: rem-calc(12);
 			border-radius: rem-calc(4);
+			z-index: 20;
 		}
 	}
 }

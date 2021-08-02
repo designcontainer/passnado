@@ -1,0 +1,16 @@
+Install Passnado,true
+Configure Cookiebot,false
+Install the Cookiebot Popup plugin,false
+Configure Google Tag Manager,false
+Configure Google Analytics,false
+Add a favicon,false
+Add a share image,false
+SEO setup,false
+Add SMTP credentials,false
+Add all used plugins to the Composer file,false
+Make sure hide from search engines is unchecked,false
+Set up client user accounts, false
+Run Google Page Speed tests to see if any glaring errors/problems, false
+Check no super-large images / setup imagify for compression, false
+Setup SSL certificate, false
+Update WordPress URLs,false

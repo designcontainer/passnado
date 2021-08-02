@@ -52,6 +52,10 @@ const Checklist = (props) => {
 		setTasks(newTasks);
 	};
 
+	const getTotalTasks = () => {
+		return window['passnado_extra'].total_checklist_tasks;
+	};
+
 	useEffect(() => {
 		if (!tasks.length) return;
 		const allDone = !tasks.some((e) => e.done === false);
@@ -63,7 +67,7 @@ const Checklist = (props) => {
 			<PartHeader>{__('Go live checklist', 'passnado')}</PartHeader>
 
 			{loading ? (
-				<FakeList rows={10} />
+				<FakeList rows={getTotalTasks()} />
 			) : (
 				<ul className="passnado-checklist">
 					{tasks.map((task, index) => {

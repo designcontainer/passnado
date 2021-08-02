@@ -5,14 +5,14 @@
 			width: rem-calc(20);
 			height: rem-calc(20);
 			border-radius: 50%;
-			margin-right: rem-calc(6);
+			margin: rem-calc(0 6 0 0);
 		}
 	}
 	&__modal {
 		z-index: 20;
 		position: absolute;
 		bottom: calc(100% + #{rem-calc(10)});
-		left: 0;
+		right: 0;
 		max-width: rem-calc(400);
 		padding: rem-calc(16);
 		border-radius: rem-calc(4);

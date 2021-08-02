@@ -8,7 +8,7 @@
  * Plugin Name: Passnado
  * Plugin URI:  https://designcontainer.no
  * Description: Password protect site
- * Version:     2.1.2
+ * Version:     2.2.0
  * Author:      Design Container AS
  * Author URI:  https://designcontainer.no
  * License:     GNU General Public License version 3.0
@@ -26,7 +26,7 @@ if (!defined('WPINC')) {
  * Rename this when releasing new versions.
  */
 if (!defined('PASSNADO_VERSION')) {
-	define('PASSNADO_VERSION', '2.1.2');
+	define('PASSNADO_VERSION', '2.2.0');
 }
 
 /**

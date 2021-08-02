@@ -82,16 +82,51 @@ class Passnado_Admin {
             $this->version,
             true
         );
+
+        wp_localize_script(
+            $this->plugin_name . '-admin',
+            'passnado_extra',
+            array(
+                'total_checklist_tasks' => $this->get_number_of_checklist_tasks(),
+            )
+        );
     }
 
+    /**
+     * Register the settings page for the admin area.
+     *
+     * @since  1.0.0
+     * @author Rostislav Melkumyan
+     */
     public function register_options_page() {
         add_options_page('Passnado', 'Password protection', 'manage_options', 'passnado', array($this, 'options_page'));
     }
 
+    /**
+     * Add the content for the registered settings page
+     *
+     * @since  2.0.0
+     * @author Rostislav Melkumyan
+     */
     public function options_page() {
         // Add a wrapper to content to.
         echo '<div id="' . $this->plugin_name . '-settings-container"></div>';
         $this->enqueue_scripts();
         $this->enqueue_styles();
+    }
+
+    /**
+     * Get the total number of checklist tasks.
+     * Used for loading placeholder.
+     *
+     * @since  2.2.0
+     * @author Rostislav Melkumyan
+     */
+    public function get_number_of_checklist_tasks() {
+        $tasks = get_option('passnado_checklist');
+        if (false === $tasks) return 0;
+
+        $total = count($tasks);
+        return $total;
     }
 }
