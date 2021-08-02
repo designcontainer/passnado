@@ -73,8 +73,8 @@ class Passnado_Settings {
         $csv_file = plugin_dir_path(dirname(dirname(__FILE__))) . $this->plugin_name . '/' . $file_name;
 
         // Get the file from the root directory in active theme if it exists.
-        if (file_exists(get_template_directory_uri() . '/' . $file_name)) {
-            $csv_file = get_template_directory_uri() . '/' . $file_name;
+        if (file_exists(get_template_directory() . '/' . $file_name)) {
+            $csv_file = get_template_directory() . '/' . $file_name;
         }
 
         $checklist_array = [];
