@@ -76,6 +76,10 @@ class Passnado_Settings {
         if (file_exists(get_template_directory() . '/' . $file_name)) {
             $csv_file = get_template_directory() . '/' . $file_name;
         }
+        // Get the file from the root/passnado directory in active theme if it exists.
+        if (file_exists(get_template_directory() . '/' . $this->plugin_name . '/' . $file_name)) {
+            $csv_file = get_template_directory() . '/' . $this->plugin_name . '/' . $file_name;
+        }
 
         $checklist_array = [];
         $row = 1;
@@ -92,7 +96,6 @@ class Passnado_Settings {
             fclose($handle);
         endif;
 
-        error_log(print_r($checklist_array, true));
         return $checklist_array;
     }
 
@@ -190,11 +193,19 @@ class Passnado_Settings {
                 'type'         => 'array',
                 'show_in_rest' => array(
                     'schema' => array(
-                        'type'  => 'array',
-                        'checklist' => array(
-                            'task' => 'string',
-                            'done' => 'boolean',
-                            'done' => 'boolean',
+                        'items' => array(
+                            'type'       => 'object',
+                            'properties' => array(
+                                'task' => array(
+                                    'type' => 'string',
+                                ),
+                                'done' => array(
+                                    'type' => 'boolean',
+                                ),
+                                'custom' => array(
+                                    'type' => 'boolean',
+                                ),
+                            ),
                         ),
                     ),
                 ),
