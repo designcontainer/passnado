@@ -28,8 +28,6 @@ const wpeClearCache = async () => {
 	if (!nonce) return;
 	if (!document.querySelector('#wpe-common-js-extra')) return;
 
-	console.log('Test test test');
-
 	try {
 		let formData = new FormData();
 		formData.append('_wpnonce', nonce);
