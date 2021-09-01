@@ -57,7 +57,7 @@ class Passnado_Public {
 		$this->version     = $version;
 		$this->cookie_exp  = time() + 7 * 24 * 60 * 60; // 1 Week
 
-		$this->protect = get_option('passnado_protect', true);
+		$this->protect = get_option('passnado_protect', false);
 		$this->key     = get_option('passnado_key');
 	}
 
@@ -89,7 +89,7 @@ class Passnado_Public {
 	 * @return boolean
 	 */
 	private function is_protection_enabled() {
-		if ("1" === $this->protect)   return true;
+		if ("1" === $this->protect)  return true;
 		if (true === $this->protect) return true;
 		return false;
 	}

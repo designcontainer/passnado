@@ -1,6 +1,6 @@
 import canvasConfetti from 'canvas-confetti';
 
-const Confetti = () => {
+const confetti = () => {
 	const count = 200;
 	const defaults = {
 		origin: { y: 0.7 },
@@ -38,4 +38,4 @@ const Confetti = () => {
 	});
 };
 
-export default Confetti;
+export default confetti;

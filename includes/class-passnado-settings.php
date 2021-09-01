@@ -112,7 +112,7 @@ class Passnado_Settings {
             array(
                 'type'         => 'boolean',
                 'show_in_rest' => true,
-                'default'      => true,
+                'default'      => false,
             )
         );
 

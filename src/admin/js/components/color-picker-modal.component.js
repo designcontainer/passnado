@@ -27,7 +27,7 @@ const ColorPickerModal = (props) => {
 						disableAlpha
 					/>
 
-					<div class="passnado-button-group">
+					<div className="passnado-button-group">
 						<Button
 							isPrimary={true}
 							text={__('Set', 'passnado')}

@@ -20,7 +20,8 @@ import Help from '../components/help.component';
 /**
  * Utilities
  */
-import Confetti from '../utils/confetti';
+import confetti from '../utils/confetti';
+import wpeClearCache from '../utils/wpe-clear-cache';
 
 const passnadoToggle = (props) => {
 	const [passnado, setPassnado, loading] = useSetting('passnado_protect');
@@ -34,10 +35,12 @@ const passnadoToggle = (props) => {
 			// If the popup is open and pasnado is active
 			setPassnado(false);
 			setConfirm(false);
-			Confetti();
+			confetti();
+			wpeClearCache();
 		} else {
 			// If passnado is not active
 			setPassnado(true);
+			wpeClearCache();
 		}
 	};
 
