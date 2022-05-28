@@ -44,7 +44,7 @@
 			justify-content: center;
 			align-items: center;
 			height: inherit;
-			background-color: $white;
+			background-color: $passnado-white;
 			header {
 				margin-bottom: rem-calc(40);
 			}
@@ -65,7 +65,7 @@
 			box-sizing: border-box;
 			width: 100%;
 			text-align: center;
-			background-color: $white;
+			background-color: $passnado-white;
 			h1 {
 				margin-top: 0;
 				font-size: rem-calc(26);
@@ -80,7 +80,7 @@
 				padding: rem-calc(16);
 				border: 0;
 				border-radius: rem-calc(6);
-				color: $white;
+				color: $passnado-white;
 				text-align: center;
 				text-decoration: none;
 				background-color: var(--passnado-message-color);
@@ -88,7 +88,7 @@
 
 				// &:hover,
 				// &:focus {
-				// 	background-color: darken($blue, 10%);
+				// 	background-color: darken($passnado-blue, 10%);
 				// }
 			}
 		}

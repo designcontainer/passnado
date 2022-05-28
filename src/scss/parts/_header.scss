@@ -5,7 +5,7 @@
 	padding: rem-calc(20 40);
 	column-gap: rem-calc(28);
 	text-align: center;
-	background-color: $white;
+	background-color: $passnado-white;
 
 	.icon-wrap {
 		display: inline-flex;
@@ -16,10 +16,10 @@
 		margin-left: rem-calc(-68); // Just for centering the text visually
 		border-radius: rem-calc(420);
 		&--locked {
-			background-color: $success;
+			background-color: $passnado-success;
 		}
 		&--unlocked {
-			background-color: $warning;
+			background-color: $passnado-warning;
 		}
 	}
 }

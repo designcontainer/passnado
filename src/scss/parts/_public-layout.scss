@@ -2,7 +2,7 @@
 	.passnado-message {
 		position: relative;
 		height: auto;
-		border: rem-calc(1) solid $light-gray;
+		border: rem-calc(1) solid $passnado-light-gray;
 		border-top: 0;
 		&__layout-nav {
 			display: flex;
@@ -22,7 +22,7 @@
 					}
 				}
 				label {
-					border-bottom: rem-calc(3) solid $white;
+					border-bottom: rem-calc(3) solid $passnado-white;
 					display: block;
 					padding: rem-calc(12 30);
 					font-weight: bold;
@@ -30,7 +30,7 @@
 			}
 		}
 		.color-picker-modal {
-			background-color: $white;
+			background-color: $passnado-white;
 			position: absolute;
 			right: rem-calc(12);
 			bottom: rem-calc(12);
