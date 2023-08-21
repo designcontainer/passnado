@@ -56,7 +56,7 @@ class Passnado_Settings {
     /**
      * Gets default settings
      *
-     * @since  2.5.2
+     * @since  2.3.2
      * @author Alicia Harris
      * @access private
      * @var    string    $default_checklist    The default settings
