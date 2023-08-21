@@ -43,6 +43,10 @@ class Passnado_Public {
 	 */
 	private $version;
 
+	private $cookie_exp;
+	private $protect;
+	private $key;
+
 	/**
 	 * Initialize the class and set its properties.
 	 *
