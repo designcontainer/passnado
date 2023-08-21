@@ -53,6 +53,16 @@ class Passnado_Settings {
      */
     private $settings;
 
+    /**
+     * Gets default settings
+     *
+     * @since  2.5.2
+     * @author Alicia Harris
+     * @access private
+     * @var    string    $default_checklist    The default settings
+     */
+    private $default_checklist;
+
     public function __construct($plugin_name, $version) {
 
         $this->plugin_name = $plugin_name;
