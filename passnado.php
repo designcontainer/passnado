@@ -8,9 +8,9 @@
  * Plugin Name: Passnado
  * Plugin URI:  https://designcontainer.no
  * Description: Password protect site
- * Version:     2.3.3
- * Author:      Design Container AS
- * Author URI:  https://designcontainer.no
+ * Version:     2.3.4
+ * Author:      Stem Agency AS
+ * Author URI:  https://stem.no
  * License:     GNU General Public License version 3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain: passnado

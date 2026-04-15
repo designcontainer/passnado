@@ -95,7 +95,7 @@ class Passnado_Settings {
         $row = 1;
 
         if (false !== ($handle = fopen($csv_file, "r"))) :
-            while (false !== ($data = fgetcsv($handle, 1000, ","))) :
+            while (false !== ($data = fgetcsv($handle, 1000, ",", "\"", "\\"))) :
                 $row++;
                 $checklist_array[] = array(
                     'task'   => $data[0],
